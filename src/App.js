@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { SearchUserPage } from './pages/SearchUserPage';
+import { SearchUserRepoPage } from './pages/SearchUserRepoPage';
+import { Header } from './components/header/Header';
+import 'normalize.css';
+import { DataProvider } from './context/DataContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <DataProvider>
+        <Header />
+        <Routes>
+          <Route path='/' element={<SearchUserPage />} />
+          <Route
+            path='/repository/:username'
+            element={<SearchUserRepoPage />}
+          />
+        </Routes>
+      </DataProvider>
+    </>
   );
 }
 
